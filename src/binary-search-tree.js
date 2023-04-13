@@ -94,21 +94,21 @@ class BinarySearchTree {
           return node;
         }
         let k = node;
-        node = findMinOfMaxrigth(node.right);
+        node = findMinOfMaxright(node.right);
         node.left = k.left;
         if (node.right) {
           node.right.right = k.right;
         }
-        if (!node.right && k.rigth != node) {
+        if (!node.right && k.right != node) {
           node.right = k.right;
         }
         return node;
-        function findMinOfMaxrigth(node) {
+        function findMinOfMaxright(node) {
           if (!node.left) {
             return node;
           }
           else {
-            return findMinOfMaxrigth(node.left);
+            return findMinOfMaxright(node.left);
           }
         }
       }
