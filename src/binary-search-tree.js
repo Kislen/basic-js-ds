@@ -96,7 +96,12 @@ class BinarySearchTree {
         let k = node;
         node = findMinOfMaxrigth(node.right);
         node.left = k.left;
-        node.right.right = k.right;
+        if (node.right) {
+          node.right.right = k.right;
+        }
+        if (!node.right && k.rigth != node) {
+          node.right = k.right;
+        }
         return node;
         function findMinOfMaxrigth(node) {
           if (!node.left) {
@@ -112,13 +117,33 @@ class BinarySearchTree {
 
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return findMin(this.rot)
+    function findMin(node) {
+      if (!node) {
+        return null;
+      }
+      if(!node.left) {
+        return node.data;
+      }
+      else {
+        return findMin(node.left);
+      }
+    }
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return findMax(this.rot)
+    function findMax(node) {
+      if (!node) {
+        return null;
+      }
+      if(!node.right) {
+        return node.data;
+      }
+      else {
+        return findMax(node. right);
+      }
+    }
   }
 }
 
