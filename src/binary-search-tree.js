@@ -36,6 +36,7 @@ class BinarySearchTree {
   }
 
   has(data) {
+    
     return searchLeaf(this.rot, data);
 
     function searchLeaf(node, data) {
@@ -93,15 +94,9 @@ class BinarySearchTree {
           node = node.left;
           return node;
         }
-        let k = node;
-        node = findMinOfMaxright(node.right);
-        node.left = k.left;
-        if (node.right) {
-          node.right.right = k.right;
-        }
-        if (!node.right && k.right != node) {
-          node.right = k.right;
-        }
+        let k = findMinOfMaxright(node.right);
+        node.data = k.data;
+        node.right = removeNode(node.right, k.data);
         return node;
         function findMinOfMaxright(node) {
           if (!node.left) {
